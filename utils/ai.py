@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-3-flash-preview")
-
+model = genai.GenerativeModel("gemini-3.1-flash-lite")
+#model = genai.GenerativeModel("gemini-3.1-flash-preview")
 SYSTEM_PROMPT = """You are a Linux terminal assistant for Ubuntu users.
 
 Rules:
@@ -52,11 +52,13 @@ User query: {query}
             generation_config={"response_mime_type": "application/json"}
         )
         import json
-        return json.loads(response.text)
+        return json.loads(response.text), "gemini"
     except Exception as e:
         return {
             "summary": "Something went wrong",
             "steps": [],
             "source": "ai",
             "warning": str(e)
-        }
+        }, "gemini"
+        
+        

@@ -1,0 +1,18 @@
+id: install-spotify
+triggers:
+  - install spotify
+  - spotify install
+  - get spotify
+  - setup spotify
+name: Install Spotify
+summary: Installing Spotify via the official Snap package
+source: official
+url: https://www.spotify.com/us/download/linux/
+steps:
+  - title: Update package list
+    explanation: Syncs local package index with remote repositories
+    command: sudo apt update
+
+  - title: Install Spotify
+    explanation: Spotify is officially distributed on Ubuntu via Snap
+    command: sudo snap install spotify

@@ -1,0 +1,34 @@
+id: install-docker
+triggers:
+  - install docker
+  - docker install
+  - setup docker
+  - get docker
+name: Install Docker Engine
+summary: Installing Docker Engine and Docker Compose on Ubuntu
+source: official
+url: https://docs.docker.com/engine/install/ubuntu/
+steps:
+  - title: Remove old Docker packages
+    explanation: Cleans up any conflicting older Docker installations
+    command: sudo apt remove -y docker docker-engine docker.io containerd runc 2>/dev/null || true
+
+  - title: Install dependencies
+    explanation: Installs packages needed to add Docker's apt repository over HTTPS
+    command: sudo apt update && sudo apt install -y ca-certificates curl gnupg lsb-release
+
+  - title: Add Docker GPG key
+    explanation: Adds Docker's official signing key to verify package authenticity
+    command: sudo install -m 0755 -d /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg && sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+  - title: Add Docker repository
+    explanation: Registers Docker's official apt repository for your Ubuntu version
+    command: echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  - title: Install Docker Engine
+    explanation: Installs Docker Engine, CLI, and Docker Compose plugin
+    command: sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+  - title: Add user to docker group
+    explanation: Lets you run Docker without sudo. Log out and back in after this.
+    command: sudo usermod -aG docker $USER
