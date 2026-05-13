@@ -1,12 +1,13 @@
 import os
-import google.generativeai as genai
+import json
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-3.1-flash-lite")
-#model = genai.GenerativeModel("gemini-3.1-flash-preview")
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
 SYSTEM_PROMPT = """You are a Linux terminal assistant for Ubuntu users.
 
 Rules:
@@ -29,9 +30,11 @@ Return your response as JSON in this exact format:
   ],
   "source": "official | community | ai",
   "warning": "optional warning string or null"
-}"""
+}
 
-async def ask_gemini(query: str, system_info: dict, error_context: str = None) -> dict:
+Return only the JSON object. No markdown, no backticks, no extra text."""
+
+async def ask_gemini(query: str, system_info: dict, error_context: str = None) -> tuple:
     context = f"""
 User system:
 - OS: {system_info.get('os_name')} {system_info.get('os_version')} ({system_info.get('os_codename')})
@@ -47,11 +50,13 @@ User query: {query}
         context += f"\nError the user encountered:\n{error_context}"
 
     try:
-        response = model.generate_content(
-            f"{SYSTEM_PROMPT}\n\n{context}",
-            generation_config={"response_mime_type": "application/json"}
+        response = client.models.generate_content(
+            model="gemini-3.1-flash-lite",
+            contents=f"{SYSTEM_PROMPT}\n\n{context}",
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json"
+            )
         )
-        import json
         return json.loads(response.text), "gemini"
     except Exception as e:
         return {
@@ -61,4 +66,5 @@ User query: {query}
             "warning": str(e)
         }, "gemini"
         
-        
+#model = genai.GenerativeModel("gemini-3.1-flash-lite")
+#model = genai.GenerativeModel("gemini-3.1-flash-preview")
