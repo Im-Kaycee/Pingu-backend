@@ -1,0 +1,23 @@
+id: install-chrome
+triggers:
+  - install chrome
+  - install google chrome
+  - setup chrome
+  - get chrome
+  - google chrome install
+name: Install Google Chrome
+summary: Installing Google Chrome browser on Ubuntu
+source: official
+url: https://www.google.com/chrome/
+steps:
+  - title: Download Chrome package
+    explanation: Downloads the official Chrome .deb package from Google
+    command: wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+  - title: Install Chrome
+    explanation: Installs the downloaded package and fixes any missing dependencies
+    command: sudo apt install -y /tmp/chrome.deb
+
+  - title: Verify installation
+    explanation: Confirms Chrome is installed
+    command: google-chrome --version

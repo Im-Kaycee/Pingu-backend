@@ -1,0 +1,33 @@
+id: fix-broken-apt
+triggers:
+  - fix broken packages
+  - apt broken
+  - fix apt
+  - broken packages
+  - apt error
+  - dpkg error
+  - apt fix
+name: Fix Broken APT Packages
+summary: Repairing broken or interrupted apt package installations
+source: official
+url: https://help.ubuntu.com/community/AptGet/Howto
+steps:
+  - title: Fix interrupted installations
+    explanation: Attempts to complete or roll back any interrupted package operations
+    command: sudo dpkg --configure -a
+
+  - title: Fix broken dependencies
+    explanation: Installs missing dependencies and fixes broken package states
+    command: sudo apt install -f
+
+  - title: Clean package cache
+    explanation: Removes downloaded package files to free space and avoid conflicts
+    command: sudo apt clean
+
+  - title: Update package list
+    explanation: Refreshes the package index after repairs
+    command: sudo apt update
+
+  - title: Full upgrade
+    explanation: Applies any pending upgrades that may have been blocked
+    command: sudo apt full-upgrade -y

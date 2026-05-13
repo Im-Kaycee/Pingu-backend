@@ -1,0 +1,31 @@
+id: install-fail2ban
+triggers:
+  - install fail2ban
+  - setup fail2ban
+  - fail2ban
+  - protect ssh
+  - brute force protection
+name: Install Fail2ban
+summary: Installing Fail2ban to protect against brute force attacks
+source: official
+url: https://github.com/fail2ban/fail2ban
+steps:
+  - title: Update package list
+    explanation: Syncs package index before installation
+    command: sudo apt update
+
+  - title: Install Fail2ban
+    explanation: Installs Fail2ban and its dependencies
+    command: sudo apt install -y fail2ban
+
+  - title: Start Fail2ban
+    explanation: Starts the Fail2ban service
+    command: sudo systemctl start fail2ban
+
+  - title: Enable on boot
+    explanation: Ensures Fail2ban starts automatically on restart
+    command: sudo systemctl enable fail2ban
+
+  - title: Check status
+    explanation: Confirms Fail2ban is running and monitoring jails
+    command: sudo fail2ban-client status

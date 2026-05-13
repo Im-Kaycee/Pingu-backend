@@ -1,0 +1,40 @@
+id: configure-git
+triggers:
+  - configure git
+  - setup git
+  - git config
+  - git setup
+  - set up git
+  - git configuration
+name: Configure Git
+summary: Setting up Git with your identity and sensible defaults
+source: official
+url: https://git-scm.com/doc
+steps:
+  - title: Install Git
+    explanation: Installs Git if not already present
+    command: sudo apt update && sudo apt install -y git
+
+  - title: Set your name
+    explanation: Git uses this name in every commit you make
+    command: git config --global user.name "Your Name"
+
+  - title: Set your email
+    explanation: Git uses this email in every commit you make
+    command: git config --global user.email "you@example.com"
+
+  - title: Set default branch to main
+    explanation: Makes new repositories use 'main' instead of 'master'
+    command: git config --global init.defaultBranch main
+
+  - title: Set default editor
+    explanation: Sets VS Code as the default Git editor
+    command: git config --global core.editor "code --wait"
+
+  - title: Enable colored output
+    explanation: Makes Git output easier to read in the terminal
+    command: git config --global color.ui auto
+
+  - title: Verify configuration
+    explanation: Shows your current Git configuration
+    command: git config --global --list

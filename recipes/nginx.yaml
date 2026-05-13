@@ -1,0 +1,35 @@
+id: install-nginx
+triggers:
+  - install nginx
+  - setup nginx
+  - nginx install
+  - get nginx
+  - configure nginx
+name: Install Nginx
+summary: Installing and starting Nginx web server on Ubuntu
+source: official
+url: https://nginx.org/en/linux_packages.html
+steps:
+  - title: Update package list
+    explanation: Syncs package index before installation
+    command: sudo apt update
+
+  - title: Install Nginx
+    explanation: Installs the Nginx web server
+    command: sudo apt install -y nginx
+
+  - title: Start Nginx
+    explanation: Starts the web server immediately
+    command: sudo systemctl start nginx
+
+  - title: Enable Nginx on boot
+    explanation: Ensures Nginx starts automatically on system restart
+    command: sudo systemctl enable nginx
+
+  - title: Allow Nginx through firewall
+    explanation: Opens HTTP and HTTPS ports in UFW if enabled
+    command: sudo ufw allow 'Nginx Full'
+
+  - title: Verify installation
+    explanation: Confirms Nginx is running
+    command: sudo systemctl status nginx --no-pager

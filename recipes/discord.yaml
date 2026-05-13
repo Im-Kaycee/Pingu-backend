@@ -1,0 +1,22 @@
+id: install-discord
+triggers:
+  - install discord
+  - setup discord
+  - get discord
+  - discord install
+name: Install Discord
+summary: Installing Discord on Ubuntu via deb package
+source: official
+url: https://discord.com/download
+steps:
+  - title: Download Discord package
+    explanation: Downloads the official Discord .deb installer
+    command: wget -O /tmp/discord.deb "https://discord.com/api/download?platform=linux&format=deb"
+
+  - title: Install Discord
+    explanation: Installs the downloaded package
+    command: sudo apt install -y /tmp/discord.deb
+
+  - title: Verify installation
+    explanation: Confirms Discord is installed
+    command: discord --version

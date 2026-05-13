@@ -1,0 +1,36 @@
+id: setup-ufw
+triggers:
+  - setup ufw
+  - configure firewall
+  - enable firewall
+  - ufw setup
+  - setup firewall
+  - install ufw
+name: Set Up UFW Firewall
+summary: Enabling and configuring UFW firewall on Ubuntu
+source: official
+url: https://help.ubuntu.com/community/UFW
+steps:
+  - title: Install UFW
+    explanation: UFW is usually pre-installed but this ensures it is available
+    command: sudo apt install -y ufw
+
+  - title: Set default policies
+    explanation: Blocks all incoming connections and allows all outgoing by default
+    command: sudo ufw default deny incoming && sudo ufw default allow outgoing
+
+  - title: Allow SSH
+    explanation: Ensures you do not lock yourself out of SSH access
+    command: sudo ufw allow ssh
+
+  - title: Allow HTTP and HTTPS
+    explanation: Opens web server ports if you are running Nginx or Apache
+    command: sudo ufw allow 'Nginx Full'
+
+  - title: Enable UFW
+    explanation: Activates the firewall with the configured rules
+    command: sudo ufw enable
+
+  - title: Check status
+    explanation: Shows which rules are active
+    command: sudo ufw status verbose

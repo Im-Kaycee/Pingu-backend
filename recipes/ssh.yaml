@@ -1,0 +1,29 @@
+id: setup-ssh
+triggers:
+  - setup ssh
+  - generate ssh key
+  - ssh key
+  - create ssh key
+  - ssh keygen
+  - ssh keys
+  - set up ssh
+name: Set Up SSH Keys
+summary: Generating an SSH key pair and adding it to the SSH agent
+source: official
+url: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+steps:
+  - title: Generate SSH key pair
+    explanation: Creates a new Ed25519 SSH key — replace the email with yours
+    command: ssh-keygen -t ed25519 -C "you@example.com"
+
+  - title: Start the SSH agent
+    explanation: Starts the background agent that manages your keys
+    command: eval "$(ssh-agent -s)"
+
+  - title: Add key to SSH agent
+    explanation: Registers your new private key with the agent
+    command: ssh-add ~/.ssh/id_ed25519
+
+  - title: Copy public key to clipboard
+    explanation: Copies your public key so you can paste it into GitHub or your server
+    command: cat ~/.ssh/id_ed25519.pub

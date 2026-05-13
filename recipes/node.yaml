@@ -1,0 +1,33 @@
+id: install-node
+triggers:
+  - install node
+  - install nodejs
+  - setup node
+  - install nvm
+  - setup nodejs
+  - get nodejs
+  - node js install
+name: Install Node.js via NVM
+summary: Installing Node.js using Node Version Manager (NVM)
+source: official
+url: https://github.com/nvm-sh/nvm
+steps:
+  - title: Install NVM
+    explanation: Downloads and runs the official NVM install script
+    command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+  - title: Load NVM into current session
+    explanation: Makes the nvm command available without restarting your terminal
+    command: export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+  - title: Install latest LTS Node.js
+    explanation: Installs the latest long-term support version of Node.js
+    command: nvm install --lts
+
+  - title: Set default Node version
+    explanation: Sets the LTS version as your default for all new terminals
+    command: nvm alias default node
+
+  - title: Verify installation
+    explanation: Confirms Node.js and npm are installed correctly
+    command: node --version && npm --version

@@ -1,0 +1,36 @@
+id: install-postgres
+triggers:
+  - install postgres
+  - install postgresql
+  - setup postgres
+  - setup postgresql
+  - get postgresql
+  - install pg
+name: Install PostgreSQL
+summary: Installing PostgreSQL database server on Ubuntu
+source: official
+url: https://www.postgresql.org/download/linux/ubuntu/
+steps:
+  - title: Update package list
+    explanation: Syncs package index before installation
+    command: sudo apt update
+
+  - title: Install PostgreSQL
+    explanation: Installs PostgreSQL server and client tools
+    command: sudo apt install -y postgresql postgresql-contrib
+
+  - title: Start PostgreSQL service
+    explanation: Starts the database server
+    command: sudo systemctl start postgresql
+
+  - title: Enable PostgreSQL on boot
+    explanation: Ensures PostgreSQL starts automatically on system restart
+    command: sudo systemctl enable postgresql
+
+  - title: Verify installation
+    explanation: Confirms PostgreSQL is running
+    command: sudo systemctl status postgresql --no-pager
+
+  - title: Access PostgreSQL shell
+    explanation: Opens the PostgreSQL interactive terminal as the default admin user
+    command: sudo -u postgres psql

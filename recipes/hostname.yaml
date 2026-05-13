@@ -1,0 +1,27 @@
+id: change-hostname
+triggers:
+  - change hostname
+  - set hostname
+  - rename computer
+  - change computer name
+  - hostname
+name: Change Hostname
+summary: Changing your Ubuntu machine's hostname
+source: official
+url: https://ubuntu.com/server/docs/network-configuration
+steps:
+  - title: Check current hostname
+    explanation: Shows your current machine name
+    command: hostnamectl
+
+  - title: Set new hostname
+    explanation: Replace 'new-hostname' with the name you want
+    command: sudo hostnamectl set-hostname new-hostname
+
+  - title: Update hosts file
+    explanation: Opens the hosts file so you can update the old hostname reference
+    command: sudo nano /etc/hosts
+
+  - title: Verify change
+    explanation: Confirms the new hostname is set
+    command: hostnamectl

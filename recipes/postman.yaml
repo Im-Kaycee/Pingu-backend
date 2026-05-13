@@ -1,0 +1,14 @@
+id: install-postman
+triggers:
+  - install postman
+  - setup postman
+  - get postman
+  - postman install
+name: Install Postman
+summary: Installing Postman API client via Snap on Ubuntu
+source: official
+url: https://www.postman.com/downloads/
+steps:
+  - title: Install Postman via Snap
+    explanation: Snap is the easiest way to install and keep Postman updated on Ubuntu
+    command: sudo snap install postman

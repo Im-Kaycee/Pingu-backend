@@ -3,7 +3,7 @@ import yaml
 from rapidfuzz import fuzz
 
 RECIPES_DIR = os.path.join(os.path.dirname(__file__), '..', 'recipes')
-MATCH_THRESHOLD = 75
+MATCH_THRESHOLD = 85
 
 def load_recipes() -> list[dict]:
     recipes = []

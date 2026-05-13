@@ -1,0 +1,33 @@
+id: python-venv
+triggers:
+  - python venv
+  - create venv
+  - virtual environment
+  - python virtual environment
+  - setup venv
+  - create virtual environment
+  - venv
+name: Create Python Virtual Environment
+summary: Creating and activating a Python virtual environment
+source: official
+url: https://docs.python.org/3/library/venv.html
+steps:
+  - title: Install venv if needed
+    explanation: Ensures the venv module is available
+    command: sudo apt install -y python3-venv
+
+  - title: Create virtual environment
+    explanation: Creates an isolated Python environment in a folder called venv
+    command: python3 -m venv venv
+
+  - title: Activate virtual environment
+    explanation: Switches your terminal session to use the isolated environment
+    command: source venv/bin/activate
+
+  - title: Upgrade pip
+    explanation: Ensures you have the latest version of pip inside the environment
+    command: pip install --upgrade pip
+
+  - title: Verify environment
+    explanation: Confirms you are using the isolated Python
+    command: which python && python --version

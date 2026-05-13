@@ -1,0 +1,15 @@
+id: install-dbeaver
+triggers:
+  - install dbeaver
+  - setup dbeaver
+  - get dbeaver
+  - dbeaver install
+  - database client
+name: Install DBeaver
+summary: Installing DBeaver database client via Snap on Ubuntu
+source: official
+url: https://dbeaver.io/download/
+steps:
+  - title: Install DBeaver via Snap
+    explanation: Installs the community edition of DBeaver
+    command: sudo snap install dbeaver-ce

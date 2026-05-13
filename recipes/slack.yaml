@@ -1,0 +1,14 @@
+id: install-slack
+triggers:
+  - install slack
+  - setup slack
+  - get slack
+  - slack install
+name: Install Slack
+summary: Installing Slack via Snap on Ubuntu
+source: official
+url: https://slack.com/downloads/linux
+steps:
+  - title: Install Slack via Snap
+    explanation: Snap is the recommended way to install Slack on Ubuntu
+    command: sudo snap install slack

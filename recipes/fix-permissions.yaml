@@ -1,0 +1,31 @@
+id: fix-permissions
+triggers:
+  - fix permissions
+  - permission denied
+  - chmod
+  - fix permission denied
+  - file permissions
+name: Fix Permission Denied Errors
+summary: Diagnosing and fixing common file permission issues on Ubuntu
+source: official
+url: https://help.ubuntu.com/community/FilePermissions
+steps:
+  - title: Check file ownership
+    explanation: Shows who owns the file and what permissions are set
+    command: ls -la /path/to/file
+
+  - title: Fix ownership
+    explanation: Changes the file owner to your current user — replace the path
+    command: sudo chown $USER:$USER /path/to/file
+
+  - title: Fix directory ownership recursively
+    explanation: Changes ownership of a folder and everything inside it
+    command: sudo chown -R $USER:$USER /path/to/directory
+
+  - title: Set correct file permissions
+    explanation: Gives the owner read and write access, others read only
+    command: chmod 644 /path/to/file
+
+  - title: Set correct directory permissions
+    explanation: Gives the owner full access, others read and execute only
+    command: chmod 755 /path/to/directory

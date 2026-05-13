@@ -1,0 +1,34 @@
+id: install-redis
+triggers:
+  - install redis
+  - setup redis
+  - redis install
+  - get redis
+name: Install Redis
+summary: Installing Redis in-memory data store on Ubuntu
+source: official
+url: https://redis.io/docs/getting-started/installation/install-redis-on-linux/
+steps:
+  - title: Update package list
+    explanation: Syncs package index before installation
+    command: sudo apt update
+
+  - title: Install Redis
+    explanation: Installs Redis server and CLI tools
+    command: sudo apt install -y redis-server
+
+  - title: Configure Redis to run as a service
+    explanation: Updates Redis config to run under systemd supervision
+    command: sudo sed -i 's/^supervised no/supervised systemd/' /etc/redis/redis.conf
+
+  - title: Restart Redis
+    explanation: Applies the configuration change
+    command: sudo systemctl restart redis.service
+
+  - title: Enable Redis on boot
+    explanation: Ensures Redis starts automatically on system restart
+    command: sudo systemctl enable redis.service
+
+  - title: Verify installation
+    explanation: Pings the Redis server to confirm it is responding
+    command: redis-cli ping
